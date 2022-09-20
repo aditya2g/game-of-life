@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InputManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">conway-java</a> &gt; <a href="index.source.html" class="el_package">com.gojek.pasti.input</a> &gt; <span class="el_source">InputManager.java</span></div><h1>InputManager.java</h1><pre class="source lang-java linenums">package com.gojek.pasti.input;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+<span class="fc" id="L8">public class InputManager {</span>
+  Scanner readFile;
+
+  private void readFile(String fileName) throws FileNotFoundException {
+<span class="fc" id="L12">    File file = new File(fileName);</span>
+<span class="fc" id="L13">    readFile = new Scanner(file);</span>
+<span class="fc" id="L14">  }</span>
+
+  public ArrayList&lt;ArrayList&lt;Character&gt;&gt; parseInputFile(String fileName)
+      throws FileNotFoundException {
+<span class="fc" id="L18">    readFile(fileName);</span>
+<span class="fc" id="L19">    return InputPatterFromFile();</span>
+  }
+
+  private ArrayList&lt;ArrayList&lt;Character&gt;&gt; InputPatterFromFile() {
+<span class="fc" id="L23">    ArrayList&lt;ArrayList&lt;Character&gt;&gt; inputPattern = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    while (readFile.hasNextLine()) {</span>
+<span class="fc" id="L25">      String line = readFile.nextLine();</span>
+<span class="fc" id="L26">      ArrayList&lt;Character&gt; inputLine = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">      for (int index = 0; index &lt; line.length(); index++) {</span>
+<span class="fc" id="L28">        inputLine.add(line.charAt(index));</span>
+      }
+<span class="fc" id="L30">      inputPattern.add(inputLine);</span>
+<span class="fc" id="L31">    }</span>
+<span class="fc" id="L32">    return inputPattern;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameBoard.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">conway-java</a> &gt; <a href="index.source.html" class="el_package">com.gojek.pasti.conway</a> &gt; <span class="el_source">GameBoard.java</span></div><h1>GameBoard.java</h1><pre class="source lang-java linenums">package com.gojek.pasti.conway;
+
+import java.util.ArrayList;
+
+public class GameBoard {
+  private char[][] grid;
+  private final int maxGridSize;
+
+<span class="fc" id="L9">  public GameBoard(int maxGridSize) {</span>
+<span class="fc" id="L10">    grid = new char[maxGridSize][maxGridSize];</span>
+<span class="fc" id="L11">    this.maxGridSize = maxGridSize;</span>
+<span class="fc" id="L12">    createEmptyGridWithDeadCells();</span>
+<span class="fc" id="L13">  }</span>
+
+  protected char[][] getCurrentGrid() {
+<span class="fc" id="L16">    return grid;</span>
+  }
+
+  private void createEmptyGridWithDeadCells() {
+<span class="fc bfc" id="L20" title="All 2 branches covered.">    for (int row = 0; row &lt; maxGridSize; row++) {</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">      for (int col = 0; col &lt; maxGridSize; col++) {</span>
+<span class="fc" id="L22">        grid[row][col] = ' ';</span>
+      }
+    }
+<span class="fc" id="L25">  }</span>
+
+  protected void initializePattern(
+      ArrayList&lt;ArrayList&lt;Character&gt;&gt; inputPattern, int startX, int startY) {
+<span class="fc bfc" id="L29" title="All 2 branches covered.">    for (int row = 0; row &lt; inputPattern.size(); row++) {</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">      for (int col = 0; col &lt; inputPattern.get(row).size(); col++) {</span>
+<span class="fc" id="L31">        grid[startX + row][startY + col] = inputPattern.get(row).get(col);</span>
+      }
+    }
+<span class="fc" id="L34">  }</span>
+
+  protected int numberOfLiveAdjacentCells(int x, int y) {
+<span class="fc" id="L37">    int numberOfLiveNeighbors = 0;</span>
+<span class="fc bfc" id="L38" title="All 6 branches covered.">    if (x - 1 &gt;= 0 &amp;&amp; y - 1 &gt;= 0 &amp;&amp; isCellAlive(x - 1, y - 1)) numberOfLiveNeighbors += 1;</span>
+<span class="fc bfc" id="L39" title="All 4 branches covered.">    if (x - 1 &gt;= 0 &amp;&amp; isCellAlive(x - 1, y)) numberOfLiveNeighbors += 1;</span>
+<span class="fc bfc" id="L40" title="All 6 branches covered.">    if (x - 1 &gt;= 0 &amp;&amp; y + 1 &lt; maxGridSize &amp;&amp; isCellAlive(x - 1, y + 1)) numberOfLiveNeighbors += 1;</span>
+<span class="fc bfc" id="L41" title="All 4 branches covered.">    if (y - 1 &gt;= 0 &amp;&amp; isCellAlive(x, y - 1)) numberOfLiveNeighbors += 1;</span>
+<span class="fc bfc" id="L42" title="All 4 branches covered.">    if (y + 1 &lt; maxGridSize &amp;&amp; isCellAlive(x, y + 1)) numberOfLiveNeighbors += 1;</span>
+<span class="fc bfc" id="L43" title="All 6 branches covered.">    if (x + 1 &lt; maxGridSize &amp;&amp; y - 1 &gt;= 0 &amp;&amp; isCellAlive(x + 1, y - 1)) numberOfLiveNeighbors += 1;</span>
+<span class="fc bfc" id="L44" title="All 4 branches covered.">    if (x + 1 &lt; maxGridSize &amp;&amp; isCellAlive(x + 1, y)) numberOfLiveNeighbors += 1;</span>
+<span class="fc bfc" id="L45" title="All 6 branches covered.">    if (x + 1 &lt; maxGridSize &amp;&amp; y + 1 &lt; maxGridSize &amp;&amp; isCellAlive(x + 1, y + 1))</span>
+<span class="fc" id="L46">      numberOfLiveNeighbors += 1;</span>
+<span class="fc" id="L47">    return numberOfLiveNeighbors;</span>
+  }
+
+  private boolean isCellAlive(int x, int y) {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">    return grid[x][y] == '#';</span>
+  }
+
+  protected void updateGrid(char[][] temporaryBoard) {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">    for (int row = 0; row &lt; maxGridSize; row++) {</span>
+<span class="fc" id="L56">      System.arraycopy(temporaryBoard[row], 0, grid[row], 0, maxGridSize);</span>
+    }
+<span class="fc" id="L58">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

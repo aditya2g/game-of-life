@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GamePresenter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">conway-java</a> &gt; <a href="index.source.html" class="el_package">com.gojek.pasti.conway</a> &gt; <span class="el_source">GamePresenter.java</span></div><h1>GamePresenter.java</h1><pre class="source lang-java linenums">package com.gojek.pasti.conway;
+
+public class GamePresenter {
+  private GameModel gameModel;
+
+<span class="fc" id="L6">  public GamePresenter(GameModel gameModel) {</span>
+<span class="fc" id="L7">    this.gameModel = gameModel;</span>
+<span class="fc" id="L8">  }</span>
+
+  public void printPattern() {
+<span class="fc" id="L11">    clearScreen();</span>
+<span class="fc" id="L12">    System.out.println(&quot;Board&quot;);</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">    for (int row = gameModel.startRow - 1; row &lt;= gameModel.endRow; row++) {</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">      for (int col = gameModel.startCol - 1; col &lt;= gameModel.endCol; col++) {</span>
+<span class="fc" id="L15">        System.out.print(gameModel.gridState[row][col]);</span>
+      }
+<span class="fc" id="L17">      System.out.print(&quot;\n&quot;);</span>
+    }
+<span class="fc" id="L19">  }</span>
+
+  private void clearScreen() {
+<span class="fc" id="L22">    System.out.print(&quot;\033[H\033[2J&quot;);</span>
+<span class="fc" id="L23">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

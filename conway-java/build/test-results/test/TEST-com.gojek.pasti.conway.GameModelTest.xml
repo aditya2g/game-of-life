@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gojek.pasti.conway.GameModelTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2020-10-23T20:02:33" hostname="aditya.aggarwal" time="0.026">
+  <properties/>
+  <testcase name="gridState_WhenGameModelObjectIsCreated_ShouldInitializeEmptyGridOfGivenSizeWithDeadCells()" classname="com.gojek.pasti.conway.GameModelTest" time="0.011"/>
+  <testcase name="populateGameBoard_WhenInputPatternIsRectangleOfSize3X5_ShouldShowPatternInMiddleOfGrid()" classname="com.gojek.pasti.conway.GameModelTest" time="0.001"/>
+  <testcase name="nextIteration_WhenGivenCellIsAliveWith2AliveAdjacentCells_ShouldRemainAliveInNextStep()" classname="com.gojek.pasti.conway.GameModelTest" time="0.003"/>
+  <testcase name="gridState_WhenGameModelObjectIsCreated_ShouldInitializeEmptyGridOfSize3x3WithDeadCells()" classname="com.gojek.pasti.conway.GameModelTest" time="0.001"/>
+  <testcase name="populateGameBoard_WhenInputPatternIsBlock_ShouldShowBlockOnGridAtOrigin()" classname="com.gojek.pasti.conway.GameModelTest" time="0.001"/>
+  <testcase name="nextIteration_WhenInputPatternIsBlock_ShouldNotIncreaseGridSize()" classname="com.gojek.pasti.conway.GameModelTest" time="0.0"/>
+  <testcase name="nextIteration_WhenInputPatternIsBlock_ShouldRemainBlockInNextStep()" classname="com.gojek.pasti.conway.GameModelTest" time="0.0"/>
+  <testcase name="nextIteration_WhenInputPatternIsVerticalBlinker_ShouldIncreaseGridSizeHorizontally()" classname="com.gojek.pasti.conway.GameModelTest" time="0.002"/>
+  <testcase name="nextIteration_WhenGivenCellIsAliveWith3AliveAdjacentCells_ShouldRemainAliveInNextStep()" classname="com.gojek.pasti.conway.GameModelTest" time="0.001"/>
+  <testcase name="nextIteration_WhenGivenCellIsDeadWith3AliveAdjacentCells_ShouldBeAliveInNextStep()" classname="com.gojek.pasti.conway.GameModelTest" time="0.0"/>
+  <testcase name="nextIteration_WhenInputPatternIsHorizontalBlinker_ShouldIncreaseGridSizeVertically()" classname="com.gojek.pasti.conway.GameModelTest" time="0.0"/>
+  <testcase name="nextIteration_WhenGivenCellIsDeadWithAliveAdjacentCellsNotEqualTo3_ShouldRemainDeadInNextStep()" classname="com.gojek.pasti.conway.GameModelTest" time="0.0"/>
+  <testcase name="nextIteration_WhenGivenCellIsAliveWith4AliveAdjacentCells_ShouldBeDeadInNextStep()" classname="com.gojek.pasti.conway.GameModelTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

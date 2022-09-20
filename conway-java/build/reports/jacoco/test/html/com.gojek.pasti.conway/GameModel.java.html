@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">conway-java</a> &gt; <a href="index.source.html" class="el_package">com.gojek.pasti.conway</a> &gt; <span class="el_source">GameModel.java</span></div><h1>GameModel.java</h1><pre class="source lang-java linenums">package com.gojek.pasti.conway;
+
+import java.util.ArrayList;
+
+public class GameModel {
+  private final GameBoard gameBoard;
+  private final int maxGridSize;
+  public char[][] gridState;
+  public int startRow;
+  public int startCol;
+  public int endRow;
+  public int endCol;
+
+<span class="fc" id="L14">  public GameModel(int maxGridSize) {</span>
+<span class="fc" id="L15">    this.maxGridSize = maxGridSize;</span>
+<span class="fc" id="L16">    gameBoard = new GameBoard(maxGridSize);</span>
+<span class="fc" id="L17">    gridState = gameBoard.getCurrentGrid();</span>
+<span class="fc" id="L18">  }</span>
+
+  public void populateGameBoard(ArrayList&lt;ArrayList&lt;Character&gt;&gt; inputPattern) {
+<span class="fc" id="L21">    int height = heightInputPattern(inputPattern);</span>
+<span class="fc" id="L22">    int width = widthInputPattern(inputPattern);</span>
+<span class="fc" id="L23">    int maxDimensionOfInputPattern = Math.max(height, width);</span>
+<span class="fc" id="L24">    int moveOriginToPoint = 0;</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">    if (maxDimensionOfInputPattern + 1 &lt; maxGridSize) {</span>
+<span class="fc" id="L26">      moveOriginToPoint = (maxGridSize - maxDimensionOfInputPattern) / 2;</span>
+    }
+<span class="fc" id="L28">    gameBoard.initializePattern(inputPattern, moveOriginToPoint, moveOriginToPoint);</span>
+<span class="fc" id="L29">    startRow = moveOriginToPoint;</span>
+<span class="fc" id="L30">    startCol = moveOriginToPoint;</span>
+<span class="fc" id="L31">    endRow = startRow + height;</span>
+<span class="fc" id="L32">    endCol = startCol + width;</span>
+<span class="fc" id="L33">  }</span>
+
+  public void nextIteration() {
+<span class="fc" id="L36">    boolean flagExtendLeft = false;</span>
+<span class="fc" id="L37">    boolean flagExtendRight = false;</span>
+<span class="fc" id="L38">    boolean flagExtendTop = false;</span>
+<span class="fc" id="L39">    boolean flagExtendBottom = false;</span>
+<span class="fc" id="L40">    char[][] temporaryBoard = new char[maxGridSize][maxGridSize];</span>
+
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    for (int row = 0; row &lt; maxGridSize; row++) {</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">      for (int col = 0; col &lt; maxGridSize; col++) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (gridState[row][col] == ' ') {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">          if (gameBoard.numberOfLiveAdjacentCells(row, col) == 3) {</span>
+<span class="fc" id="L46">            temporaryBoard[row][col] = '#';</span>
+          } else {
+<span class="fc" id="L48">            temporaryBoard[row][col] = ' ';</span>
+          }
+        } else {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">          if (gameBoard.numberOfLiveAdjacentCells(row, col) == 2</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">              || gameBoard.numberOfLiveAdjacentCells(row, col) == 3) {</span>
+<span class="fc" id="L53">            temporaryBoard[row][col] = '#';</span>
+          } else {
+<span class="fc" id="L55">            temporaryBoard[row][col] = ' ';</span>
+          }
+        }
+
+<span class="fc bfc" id="L59" title="All 4 branches covered.">        if (temporaryBoard[row][col] == '#' &amp;&amp; row == startRow - 1) flagExtendTop = true;</span>
+<span class="fc bfc" id="L60" title="All 4 branches covered.">        if (temporaryBoard[row][col] == '#' &amp;&amp; row == endRow) flagExtendBottom = true;</span>
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        if (temporaryBoard[row][col] == '#' &amp;&amp; col == startCol - 1) flagExtendLeft = true;</span>
+<span class="fc bfc" id="L62" title="All 4 branches covered.">        if (temporaryBoard[row][col] == '#' &amp;&amp; col == endCol) flagExtendRight = true;</span>
+      }
+    }
+<span class="fc" id="L65">    extendGrid(flagExtendLeft, flagExtendRight, flagExtendTop, flagExtendBottom);</span>
+<span class="fc" id="L66">    gameBoard.updateGrid(temporaryBoard);</span>
+<span class="fc" id="L67">  }</span>
+
+  private int heightInputPattern(ArrayList&lt;ArrayList&lt;Character&gt;&gt; inputPattern) {
+<span class="fc" id="L70">    return inputPattern.size();</span>
+  }
+
+  private int widthInputPattern(ArrayList&lt;ArrayList&lt;Character&gt;&gt; inputPattern) {
+<span class="fc" id="L74">    int width = 0;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">    for (ArrayList&lt;Character&gt; inputPatternRow : inputPattern) {</span>
+<span class="fc" id="L76">      width = Math.max(width, inputPatternRow.size());</span>
+<span class="fc" id="L77">    }</span>
+<span class="fc" id="L78">    return width;</span>
+  }
+
+  private void extendGrid(
+      boolean flagLeft, boolean flagRight, boolean flagTop, boolean flagBottom) {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    if (flagTop) startRow -= 1;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">    if (flagLeft) startCol -= 1;</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">    if (flagRight) endCol += 1;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">    if (flagBottom) endRow += 1;</span>
+<span class="fc" id="L87">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

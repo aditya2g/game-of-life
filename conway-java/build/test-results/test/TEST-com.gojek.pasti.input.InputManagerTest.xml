@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gojek.pasti.input.InputManagerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-10-23T20:02:34" hostname="aditya.aggarwal" time="0.007">
+  <properties/>
+  <testcase name="parseInputFile_WhenFileExists_ShouldReturnInputPattern()" classname="com.gojek.pasti.input.InputManagerTest" time="0.004"/>
+  <testcase name="parseInputFile_WhenFileDoesNotExist_ShouldReturnException()" classname="com.gojek.pasti.input.InputManagerTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
